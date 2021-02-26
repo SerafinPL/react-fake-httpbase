@@ -20,7 +20,14 @@
 }
 
 .Blog a:hover,
-.Blog a:active  {
+.Blog a:active,
+.Blog a.active,
+.Blog a.my-active:hover  {
 	text-decoration: none;
 	color: #7b8a18;
+}
+
+.Blog a.my-active{
+	text-decoration: none;
+	color: #Fb7b38;
 }

@@ -5,6 +5,8 @@ import axiosInstance from '../../../axios';
 import Post from '../../../components/Post/Post';
 import './Posts.css';
 
+
+
 class Posts extends Component{
 
 
@@ -15,6 +17,8 @@ class Posts extends Component{
 
 
     componentDidMount(){
+        console.log(this.props);
+
     axiosInstance.get('/posts')
     .then(response => {
         const posts = response.data.slice(0, 5);

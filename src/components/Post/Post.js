@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {withRouter} from 'react-router-dom';
+
 import './Post.css';
 
 const post = (props) => (
@@ -11,4 +13,4 @@ const post = (props) => (
     </article>
 );
 
-export default post;
+export default withRouter(post); // HOC który dodaje props od router
