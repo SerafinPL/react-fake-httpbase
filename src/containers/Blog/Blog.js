@@ -4,6 +4,7 @@ import { Route, NavLink } from 'react-router-dom'
 
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 import './Blog.css';
 
 //import axios from 'axios';
@@ -25,17 +26,18 @@ class Blog extends Component {
                                     to='/'
                                     activeClassName='my-active'
                                     activeStyle={{
-                                        animation: 'mymove 5s', 
-                                        keyframes: 'mymove { to {fontSize: 1.5em;}}'
-                                        
+                                         fontSize: '1.5em'
                                     }}
                                 >Home</NavLink></li>
                             <li><NavLink to={{
-                              pathname: '/new-post', //Absolute path to domain
-                              //pathname: this.props.match.url + '/new-post', // relative path
-                              hash: '#IDElement',
-                              search:'?quick-submit=true'   
-                            }}>NewPost</NavLink></li>
+                                    pathname: '/new-post', //Absolute path to domain
+                                    //pathname: this.props.match.url + '/new-post', // relative path
+                                    hash: '#IDElement',
+                                    search:'?quick-submit=true'   
+                                }}
+                                activeStyle={{fontSize: '1.5em'}}
+                            >NewPost</NavLink></li>
+
                         </ul>
                     </nav>
                 </header>
@@ -44,6 +46,7 @@ class Blog extends Component {
                 <Route path='/new-post' render={() => <h1>Home3</h1>} />*/}
                 <Route path='/' exact component={Posts} />
                 <Route path='/new-post' component={NewPost} />
+                <Route path='/:postId' exact component={FullPost} />
             </div>
         );
     }

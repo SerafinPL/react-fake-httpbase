@@ -12,6 +12,12 @@ class NewPost extends Component {
     }
 
     componentDidMount(){
+
+        const query = new URLSearchParams(this.props.location.search);
+        console.log(query.entries());
+        for (let param of query.entries()) {
+            console.log(param); // yields ['start', '5']
+        }
         console.log(this.props);
     }
 

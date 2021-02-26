@@ -10,14 +10,18 @@ class FullPost extends Component {
         loadedPost: null
     }
     
-    componentDidUpdate() {
-        if (this.props.id){
-            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.id)){
-                axios.get('/posts/' + this.props.id)
+    componentDidMount() {
+        console.log(this.props);
+        if (this.props.match.params.postId){
+            if (!this.state.loadedPost || (this.state.loadedPost && this.state.loadedPost.id !== this.props.match.params.postId)){
+                axios.get('/posts/' + this.props.match.params.postId)
                 .then(response => {
                 //console.log(response);
-                this.setState({loadedPost: response.data})
-            });
+                this.setState({loadedPost: response.data});
+                })
+                .catch(error =>{
+                    this.setState({loadedPost: {title: 'błąd odczytu'}});
+                });
             }
             
         }
@@ -31,9 +35,9 @@ class FullPost extends Component {
     }
 
     render () {
-        let post = <p style={{textAlign: 'center'}}>Proszę wybież fake posta!</p>;
+        let post = <p style={{textAlign: 'center'}}>Nie odnaleziono takiego fake posta!</p>;
         
-        if (this.props.id){
+        if (this.props.match.params.postId){
             post = <p style={{textAlign: 'center'}}>Ładowanie...</p>;
         }
 
