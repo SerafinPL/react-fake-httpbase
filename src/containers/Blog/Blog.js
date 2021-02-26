@@ -20,8 +20,12 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><a href='/'>Home</a></li>
-                            <li><a href='/new-post'>NewPost</a></li>
+                            <li><Link to='/'>Home</Link></li>
+                            <li><Link to={{
+                              pathname: '/new-post',
+                              hash: '#IDElement',
+                              search:'?quick-submit=true'   
+                            }}>NewPost</Link></li>
                         </ul>
                     </nav>
                 </header>
