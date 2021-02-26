@@ -12,6 +12,8 @@ class Posts extends Component{
 
 	state = {
         posts: [],
+        error: null,
+        load:false
         
     }
 
@@ -29,38 +31,46 @@ class Posts extends Component{
             }
         });
         this.setState({
-            posts: updatedPosts
+            posts: updatedPosts,
+            load: true
         })
         //console.log(response);
     })
     .catch(error => {
         // handle error
         console.log(error);
-        //this.setState({error: true})
+        this.setState({error: true})
     });
     }
 
     postSelectedHandler = (id) => {
-        this.setState({selectedPostId: id});
+        //this.setState({selectedPostId: id});
+        //this.props.history.push({pathname: '/' + id});
+        this.props.history.push('/' + id);
+
     }
 
 	render(){
 
-		let posts = <p style={{textAlign : 'center'}}>Coś jest nie tak pojawił się ERROR</p>
-        if (!this.state.error){
+		let posts = <p style={{textAlign : 'center'}}>Ładowanie postów</p>
+
+        if (this.state.error) {posts = <p style={{textAlign : 'center'}}>Coś jest nie tak pojawił się ERROR</p>};
+
+        if (!this.state.error && this.state.load){
         posts = this.state.posts.map(post => {
 
-                return( <Link to={'/' +post.id} key={post.id}>
+                return( //<Link to={'/' +post.id} key={post.id}>
                             <Post 
-                                 
+                                key={post.id}
                                 title={post.title}
                                 author={post.author}
                                 clicked={() => this.postSelectedHandler(post.id)}
                             />
-                        </Link>);
+                        //</Link>
+                        );
             }
             );
-        } 
+        }; 
 
 
 		return(
