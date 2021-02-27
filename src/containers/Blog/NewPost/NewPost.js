@@ -4,11 +4,14 @@ import './NewPost.css';
 
 import axios from 'axios';
 
+import { Redirect } from 'react-router-dom';
+
 class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Kuba'
+        author: 'Kuba',
+        submitted: false
     }
 
     componentDidMount(){
@@ -18,7 +21,7 @@ class NewPost extends Component {
         for (let param of query.entries()) {
             console.log(param); // yields ['start', '5']
         }
-        console.log(this.props);
+        //console.log(this.props);
     }
 
     postDataHandler = () => {
@@ -30,13 +33,24 @@ class NewPost extends Component {
 
         axios.post('/posts', sendPost)
         .then(response => {
-            console.log(response);//fake 
+            this.setState({submitted : true});
+            //console.log(response);//fake 
         });
     }
 
+    
+
     render () {
+
+        let redirect = null;
+
+        if (this.state.submitted) {
+           redirect = <Redirect to='/posts'/>;
+        }
+
         return (
             <div className="NewPost">
+                 {redirect}
                 <h1>Dodaj Post</h1>
                 <label>Tytuł</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />
