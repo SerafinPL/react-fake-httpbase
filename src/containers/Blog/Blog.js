@@ -4,7 +4,7 @@ import { Route, NavLink, Switch } from 'react-router-dom'
 
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+//import FullPost from './FullPost/FullPost';
 import './Blog.css';
 
 //import axios from 'axios';
@@ -23,7 +23,7 @@ class Blog extends Component {
                         <ul>
                             <li><NavLink 
                                     exact 
-                                    to='/'
+                                    to='/posts/'
                                     activeClassName='my-active'
                                     activeStyle={{
                                          fontSize: '1.5em'
@@ -44,12 +44,13 @@ class Blog extends Component {
                 {/*<Route path='/' render={() => <h1>Home1</h1>} />
                 <Route path='/' exact render={() => <h1>Home2</h1>} />
                 <Route path='/new-post' render={() => <h1>Home3</h1>} />*/}
+
                 
-                <Route path='/' exact component={Posts} />
                 <Switch> {/* Switch wybiera tylko pierwszy pasujący element i renderuje*/}
                     
                     <Route path='/new-post' component={NewPost} />
-                    <Route path='/:postId' exact component={FullPost} />
+                    <Route path='/posts' component={Posts} />
+                    {/*<Route path='/:postId' exact component={FullPost} />*/}
                 </Switch>
                 {/*<Route path='/posts/:postId' exact component={FullPost} />  altrnatywne rozwiązanie*/}
                 
