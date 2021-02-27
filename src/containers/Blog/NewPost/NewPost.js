@@ -33,7 +33,9 @@ class NewPost extends Component {
 
         axios.post('/posts', sendPost)
         .then(response => {
-            this.setState({submitted : true});
+            //this.props.history.push('/posts'); // dołożenie do stosu
+            this.props.history.replace('/posts'); // zamiana bez możliwości powrotu
+            //this.setState({submitted : true}); 
             //console.log(response);//fake 
         });
     }

@@ -13,6 +13,9 @@ import axiosInstance from '../../axios';
 
 class Blog extends Component {
 
+    state = {
+        auth: false
+    }
     
     render () {     
           
@@ -49,7 +52,7 @@ class Blog extends Component {
                 <Switch> {/* Switch wybiera tylko pierwszy pasujący element i renderuje*/}
                     
 
-                    <Route path='/new-post' component={NewPost} />
+                    {this.state.auth ? <Route path='/new-post' component={NewPost} /> : null}
                     <Route path='/posts' component={Posts} />
                     <Redirect from='/' to='/posts' /> {/* zamienia ścieszkę z from na to tylko w Switchu*/}
 
