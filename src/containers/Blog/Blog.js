@@ -14,7 +14,7 @@ import axiosInstance from '../../axios';
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     }
     
     render () {     
