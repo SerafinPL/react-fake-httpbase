@@ -54,7 +54,9 @@ class Blog extends Component {
 
                     {this.state.auth ? <Route path='/new-post' component={NewPost} /> : null}
                     <Route path='/posts' component={Posts} />
-                    <Redirect from='/' to='/posts' /> {/* zamienia ścieszkę z from na to tylko w Switchu*/}
+
+                    <Route render={() => <h1>Nie znaleziono strony</h1>} /> {/* bez path łapie wszystkie ścieszki dla 404error*/}
+                    {/*<Redirect from='/' to='/posts' />  zamienia ścieszkę z from na to tylko w Switchu*/}
 
                     {/*<Route path='/' component={Posts} />*/}
                     {/*<Route path='/:postId' exact component={FullPost} />*/}
