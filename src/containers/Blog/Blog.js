@@ -3,13 +3,19 @@ import React, { Component } from 'react';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
+
 //import FullPost from './FullPost/FullPost';
 import './Blog.css';
 
 //import axios from 'axios';
-
 import axiosInstance from '../../axios';
+
+//import NewPost from './NewPost/NewPost';
+import asyncComponent from '../../hoc/asyncComponent';
+const AsyncNewPost = asyncComponent(() => {
+    return import('./NewPost/NewPost');
+});
+
 
 class Blog extends Component {
 
@@ -52,7 +58,7 @@ class Blog extends Component {
                 <Switch> {/* Switch wybiera tylko pierwszy pasujący element i renderuje*/}
                     
 
-                    {this.state.auth ? <Route path='/new-post' component={NewPost} /> : null}
+                    {this.state.auth ? <Route path='/new-post' component={AsyncNewPost} /> : null}
                     <Route path='/posts' component={Posts} />
 
                     <Route render={() => <h1>Nie znaleziono strony</h1>} /> {/* bez path łapie wszystkie ścieszki dla 404error*/}
