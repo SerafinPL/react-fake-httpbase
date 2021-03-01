@@ -42,7 +42,7 @@ class Blog extends Component {
                                     pathname: '/new-post', //Absolute path to domain
                                     //pathname: this.props.match.url + '/new-post', // relative path
                                     hash: '#IDElement',
-                                    search:'?quick-submit=true'   
+                                    search:'?quick-submit=true&nextquery=false'   
                                 }}
                                 activeStyle={{fontSize: '1.5em'}}
                             >NewPost</NavLink></li>
