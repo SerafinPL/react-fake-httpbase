@@ -31,21 +31,24 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink 
-                                    exact 
                                     to='/posts/'
                                     activeClassName='my-active'
                                     activeStyle={{
                                          fontSize: '1.5em'
                                     }}
-                                >Home</NavLink></li>
-                            <li><NavLink to={{
-                                    pathname: '/new-post', //Absolute path to domain
-                                    //pathname: this.props.match.url + '/new-post', // relative path
-                                    hash: '#IDElement',
-                                    search:'?quick-submit=true&nextquery=false'   
-                                }}
-                                activeStyle={{fontSize: '1.5em'}}
-                            >NewPost</NavLink></li>
+                                >Home</NavLink>
+                            </li>
+                            <li><NavLink 
+                                    to={{
+                                        pathname: '/new-post', //Absolute path to domain
+                                        //pathname: this.props.match.url + '/new-post', // relative path
+                                        hash: '#IDElement',
+                                        search:'?quick-submit=true&nextquery=false'   
+                                    }}
+                                    activeClassName='my-active'
+                                    activeStyle={{fontSize: '1.5em'}}
+                                >NewPost</NavLink>
+                            </li>
 
                         </ul>
                     </nav>
@@ -59,8 +62,9 @@ class Blog extends Component {
                     
 
                     {this.state.auth ? <Route path='/new-post' component={AsyncNewPost} /> : null}
-                    <Route path='/posts' component={Posts} />
 
+                    <Route path='/posts' component={Posts} />
+                    <Redirect from='/' to='/posts' exact />
                     <Route render={() => <h1>Nie znaleziono strony</h1>} /> {/* bez path łapie wszystkie ścieszki dla 404error*/}
                     {/*<Redirect from='/' to='/posts' />  zamienia ścieszkę z from na to tylko w Switchu*/}
 

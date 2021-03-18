@@ -12,6 +12,7 @@ const ansycComponent = (importComponent) => {
 		componentDidMount(){
 			importComponent()
 				.then(cmp => {
+					console.log(cmp.default);
 					this.setState({component: cmp.default});
 				});
 		}
